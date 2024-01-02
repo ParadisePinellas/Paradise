@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Paradise Pinellas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Paradise Pinellas" />
+    <meta name="keywords" content="Paradise Pinellas" />
+    <meta content="Themesdesign" name="author" />
+
+    <!-- dropdown -->
+    <link rel="dropdown" href="css/dropdown.css" />
+
+    <!-- fevicon -->
+    <link rel="icon" href="images/favicon/favicon.ico" />
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+
+    <!-- animation -->
+    <link rel="stylesheet" href="css/aos.css" />
+
+    <!-- slider -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css" type="text/css" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.min.css" type="text/css" />
+
+    <!-- colors -->
+    <link href="css/colors/default.css" rel="stylesheet" type="text/css" id="color-opt" />
+
+    <!---flaticon-->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css" />
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" />
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css" />
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css" />
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-thin-straight/css/uicons-thin-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <style>
+        .faq {
+            background-color: #f2f2f2;
+            color: #333;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+            border: 5px;
+        }
+
+        /* Style the content panel for each FAQ item */
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("fjr2hq9tcBkIngT-H");
+        })();
+    </script>
+    <script>
+        var faqs = document.getElementsByClassName("faq");
+        var i;
+
+        for (i = 0; i < faqs.length; i++) {
+            faqs[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+        function submitRentCalcForm(event) {
+            document.getElementById("myRentCalcForm").style.display = "none";
+            document.getElementById("thankYouMessage").style.display = "block";
+        }
+    </script>
+    <script>
+        function sendEmail(){
+            var params = {
+                user_name: document.getElementById("name").value,
+                user_email: document.getElementById("email").value,
+                user_address: document.getElementById("address").value,
+                user_phone: document.getElementById("phone").value,
+                room: document.getElementById("room").value,
+                bathroom: document.getElementById("bathroom").value,
+                user_subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            };
+            emailjs.send("service_dqif4fh", "template_mtjaik7", params).then(function (res) {
+                console.log("Success " + res.status);
+            })
+        }
+    </script>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="71">
+
+    <hr />
+
+    <!-- start contact -->
+    <section class="section contact" id="rentalcontact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <h3 class="heading mb-3">
+                            Estimated <span class="text-primary">Rental</span> Income
+                        </h3>
+                        <p class="text-muted mb-0">
+                            Fill out the information below to estimate
+                            your potential Vacation Rental income
+                        </p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row justify-content-around g-4">
+                <div class="col-lg-6">
+                    <form method="post" onsubmit="return validateForm()"
+                        class="rent-calc-form" name="myForm" id="myRentCalcForm">
+                        <span id="error-msg"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="mdi mdi-account-outline"></i></span>
+                                    <input name="name" id="name" type="text" class="form-control"
+                                        placeholder="Enter your name*" value="" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="mdi mdi-email-outline"></i></span>
+                                    <input name="email" id="email" type="email" class="form-control"
+                                        placeholder="Enter your email*" value="" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="fi fi-ss-address-book"></i></span>
+                                    <input name="address" id="address" type="address" class="form-control"
+                                        placeholder="Enter your Address*" value="" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="fi fi-ss-circle-phone-flip"></i></span>
+                                    <input name="phone" id="phone" type="phone" class="form-control"
+                                        placeholder="Enter your phone number*" value="" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="fi fi-rs-bed-alt"></i></span>
+                                    <input name="room" id="room" type="room" class="form-control"
+                                        placeholder="Number of Rooms*" value="" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="fi fi-ts-hot-tub"></i></span>
+                                    <input name="subject" id="bathroom" type="text" class="form-control"
+                                        placeholder="Number of Bathrooms*" value="" required />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text"><i class="fi fi-bs-comment-quote"></i></i
+                                        ></span>
+                                    <input name="subject" id="subject" type="text" class="form-control"
+                                        placeholder="Subject" required />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="position-relative mb-3">
+                                    <span class="input-group-text align-items-start"><i
+                                            class="mdi mdi-comment-text-outline"></i></span>
+                                    <textarea name="comments" id="message" rows="4" class="form-control"
+                                        placeholder="Enter your message*" required></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="submit" id="submit" name="send" class="btn btn-primary submitButton"
+                                        value="Submit" onclick="submitRentCalcForm(); sendEmail()" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="thankYouMessage" style="display: none; text-align: center;">
+                        Thank you very much for submiting your details.<br> Someone from our team will be in touch
+                        shortly.
+                    </div>
+                    <!--end form-->
+                </div>
+
+                <!--end contact-details-->
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!-- end about -->
+    <div style="text-align: center;">
+        <a href="index.html">
+            <button type="back" id="back" name="back" class="btn btn-primary" value="back">Home</button>
+        </a>
+    </div>
+    <hr />
+
+    <!-- end switcher-->
+
+
+
+    <!--DropDown JS-->
+    <script src="js/dropdown.js"></script>
+
+    <!--Custom js-->
+    <script src="js/counter.js"></script>
+
+    <!--Bootstrap Js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- animation -->
+    <script src="js/aos.js"></script>
+
+    <!-- swiper js -->
+    <script src="js/swiper-bundle.min.js"></script>
+
+    <!-- contact -->
+    <script src="js/contact.js"></script>
+
+    <!-- App Js -->
+    <!-- <script src="js/app.js"></script> -->
+</body>
+
+</html>
